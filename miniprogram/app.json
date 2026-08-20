@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/table/index",
+    "pages/menu/index",
+    "pages/confirm/index",
+    "pages/order/detail",
+    "pages/order/history",
+    "pages/closed/index"
+  ],
+  "window": {
+    "backgroundColor": "#f5f5f5",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3a2a1a",
+    "navigationBarTitleText": "富有餐馆",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

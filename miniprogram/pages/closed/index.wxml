@@ -1,0 +1,8 @@
+<view class="page">
+  <view class="icon">😴</view>
+  <view class="title" wx:if="{{reason == 'unknown'}}">营业状态未设置</view>
+  <view class="title" wx:else>本店已打烊</view>
+  <view class="sub" wx:if="{{reason == 'unknown'}}">请联系商家在后台把营业状态设为"营业中"</view>
+  <view class="sub" wx:else>休息中，请稍后再来哦～</view>
+  <button class="btn-primary recheck-btn" bindtap="recheck">重新检查</button>
+</view>

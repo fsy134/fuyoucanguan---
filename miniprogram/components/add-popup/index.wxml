@@ -1,0 +1,47 @@
+<view class="popup-mask" wx:if="{{show}}" bindtap="onMaskTap">
+  <view class="popup-panel" catchtap="noop">
+    <!-- 头部：名称 + 单价 + 关闭 -->
+    <view class="popup-head">
+      <view>
+        <view class="popup-title">{{title}}</view>
+        <view class="popup-price">¥{{priceText}}</view>
+      </view>
+      <view class="popup-close" bindtap="onClose">×</view>
+    </view>
+
+    <scroll-view class="popup-body" scroll-y>
+      <!-- 套餐包含清单 -->
+      <view class="detail-box" wx:if="{{detailItems.length}}">
+        <view class="detail-title">套餐包含</view>
+        <view class="detail-item" wx:for="{{detailItems}}" wx:key="index">
+          {{item.name}} ×{{item.copies}}
+        </view>
+      </view>
+
+      <!-- 口味维度 -->
+      <view class="flavor-dim" wx:for="{{flavors}}" wx:for-item="dim" wx:key="name">
+        <view class="dim-name">
+          {{dim.name}}
+          <text class="dim-hint" wx:if="{{multiMap[dim.name]}}">可多选</text>
+        </view>
+        <view class="dim-options">
+          <view class="dim-option {{activeMap[dim.name + '|' + item] ? 'active' : ''}}"
+                wx:for="{{dim.values}}" wx:for-item="item" wx:key="*this"
+                data-dim="{{dim.name}}" data-value="{{item}}" bindtap="onPickOption">
+            {{item}}
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 底部：数量步进 + 加入购物车 -->
+    <view class="popup-foot">
+      <view class="stepper">
+        <view class="step-btn {{quantity<=1 ? 'disabled' : ''}}" bindtap="onMinus">－</view>
+        <view class="step-num">{{quantity}}</view>
+        <view class="step-btn" bindtap="onPlus">＋</view>
+      </view>
+      <button class="confirm-btn" bindtap="onConfirm">加入购物车</button>
+    </view>
+  </view>
+</view>

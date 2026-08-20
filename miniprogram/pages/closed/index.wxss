@@ -1,0 +1,24 @@
+.page {
+  padding-top: 160rpx;
+  text-align: center;
+}
+
+.icon {
+  font-size: 120rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 30rpx;
+}
+
+.sub {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 20rpx;
+}
+
+.recheck-btn {
+  margin: 60rpx 120rpx 0;
+}

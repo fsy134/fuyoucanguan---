@@ -1,0 +1,58 @@
+<view class="page" wx:if="{{order}}">
+  <!-- 状态卡片 -->
+  <view class="status-card {{statusClass}}">
+    <view class="status-icon">{{statusIcon}}</view>
+    <view class="status-text">{{statusText}}</view>
+    <view class="status-sub" wx:if="{{canPay}}">请尽快付款，超时订单可能被取消</view>
+    <view class="status-sub" wx:elif="{{statusClass == 'done'}}">感谢惠顾，期待您的下次光临</view>
+    <view class="status-sub" wx:elif="{{statusClass == 'canceled'}}">{{order.cancelReason || '订单已取消'}}</view>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="info-card">
+    <view class="info-row">
+      <text class="info-label">订单号</text>
+      <text class="info-value">{{order.number}}</text>
+    </view>
+    <view class="info-row" wx:if="{{tableNum}}">
+      <text class="info-label">桌号</text>
+      <text class="info-value">{{tableNum}}号桌</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">下单时间</text>
+      <text class="info-value">{{order.orderTime}}</text>
+    </view>
+    <view class="info-row" wx:if="{{order.checkoutTime}}">
+      <text class="info-label">付款时间</text>
+      <text class="info-value">{{order.checkoutTime}}</text>
+    </view>
+    <view class="info-row" wx:if="{{order.remark}}">
+      <text class="info-label">备注</text>
+      <text class="info-value">{{order.remark}}</text>
+    </view>
+  </view>
+
+  <!-- 菜品明细 -->
+  <view class="items-card">
+    <view class="items-title">菜品明细</view>
+    <view class="items-row" wx:for="{{order.orderDetailList}}" wx:key="id">
+      <view class="items-name">
+        {{item.name}}
+        <text wx:if="{{item.dishFlavor}}" class="items-flavor">（{{item.dishFlavor}}）</text>
+      </view>
+      <view class="items-num">×{{item.number}}</view>
+      <view class="items-price">¥{{item.priceText}}</view>
+    </view>
+    <view class="items-total">合计 <text class="total-amount">¥{{amountText}}</text></view>
+  </view>
+
+  <!-- 返回点餐 -->
+  <view class="back-link" bindtap="onBackMenu">← 返回点餐</view>
+</view>
+
+<!-- 底部按钮区：已取消的订单没有任何可操作按钮，整栏隐藏 -->
+<view class="footer" wx:if="{{order && (canPay || canCancel || canRemind)}}">
+  <button class="btn-remind" wx:if="{{canRemind}}" bindtap="onRemind">催单</button>
+  <button class="btn-plain" wx:if="{{canCancel}}" bindtap="onCancel">取消订单</button>
+  <button class="btn-pay" wx:if="{{canPay}}" bindtap="onPay">去付款</button>
+</view>

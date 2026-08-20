@@ -1,0 +1,67 @@
+.page {
+  min-height: 100vh;
+}
+
+/* 店招横幅：背景图整张显示 + 悬浮白字 */
+.banner {
+  position: relative;
+}
+
+.banner-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.banner-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 30%, rgba(0, 0, 0, 0.25) 70%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.banner-content {
+  position: absolute;
+  left: 40rpx;
+  bottom: 40rpx;
+  color: #fff;
+}
+
+.banner-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  text-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.3);
+}
+
+.banner-sub {
+  font-size: 26rpx;
+  margin-top: 12rpx;
+  opacity: 0.95;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.3);
+}
+
+.tip {
+  padding: 30rpx 30rpx 10rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+/* 桌号宫格：每行 3 个 */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10rpx 15rpx;
+}
+
+.cell {
+  width: 31%;
+  margin: 10rpx 1.16%;
+  background: #fff;
+  border-radius: 14rpx;
+  padding: 36rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+  color: #333;
+}

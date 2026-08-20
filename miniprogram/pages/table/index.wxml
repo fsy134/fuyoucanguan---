@@ -1,0 +1,21 @@
+<view class="page">
+  <!-- 店招横幅：背景图 + 悬浮文字 -->
+  <view class="banner">
+    <image class="banner-bg" src="{{shopBg}}" mode="widthFix" />
+    <view class="banner-mask"></view>
+    <view class="banner-content anim-float">
+      <view class="banner-title">{{shopName}}</view>
+      <view class="banner-sub">扫码点餐 · 美味即达</view>
+    </view>
+  </view>
+
+  <view class="tip">请选择您所在的桌号</view>
+
+  <!-- 桌号宫格 -->
+  <view class="grid">
+    <view class="cell" wx:for="{{tables}}" wx:key="*this"
+          data-num="{{item}}" bindtap="chooseTable">
+      {{item}}号桌
+    </view>
+  </view>
+</view>

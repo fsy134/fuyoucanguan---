@@ -1,0 +1,180 @@
+.page {
+  padding: 24rpx 24rpx 200rpx;
+}
+
+/* 状态卡片 */
+.status-card {
+  border-radius: 20rpx;
+  padding: 48rpx 30rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.status-card.pending {
+  background: #fdf3e7;
+}
+
+.status-card.done {
+  background: #e8f5e9;
+}
+
+.status-card.canceled {
+  background: #f5f5f5;
+}
+
+.status-icon {
+  font-size: 80rpx;
+}
+
+.status-text {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-top: 16rpx;
+  color: #333;
+}
+
+.status-sub {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 12rpx;
+}
+
+/* 信息卡片 */
+.info-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 10rpx 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.info-row {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+  font-size: 26rpx;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  width: 160rpx;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.info-value {
+  flex: 1;
+  color: #333;
+  word-break: break-all;
+}
+
+/* 菜品明细 */
+.items-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx 30rpx;
+}
+
+.items-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.items-row {
+  display: flex;
+  align-items: center;
+  padding: 14rpx 0;
+  font-size: 26rpx;
+}
+
+.items-name {
+  flex: 1;
+  color: #333;
+}
+
+.items-flavor {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.items-num {
+  width: 90rpx;
+  text-align: center;
+  color: #666;
+}
+
+.items-price {
+  width: 140rpx;
+  text-align: right;
+  color: #333;
+}
+
+.items-total {
+  text-align: right;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f5f5f5;
+  font-size: 28rpx;
+}
+
+.total-amount {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #d9822b;
+}
+
+/* 返回点餐链接 */
+.back-link {
+  text-align: center;
+  color: #999;
+  font-size: 26rpx;
+  padding: 30rpx 0;
+}
+
+/* 底部按钮区 */
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.06);
+  padding: 16rpx 30rpx calc(16rpx + env(safe-area-inset-bottom));
+  display: flex;
+  gap: 24rpx;
+}
+
+.btn-remind {
+  flex: 1;
+  background: #fff;
+  color: #666;
+  border: 2rpx solid #ddd;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  line-height: 68rpx;
+  padding: 0;
+}
+
+.btn-plain {
+  flex: 1;
+  background: #fff;
+  color: #999;
+  border: 2rpx solid #ddd;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+  line-height: 68rpx;
+  padding: 0;
+}
+
+.btn-pay {
+  flex: 1.1;
+  background: #d9822b;
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 68rpx;
+  padding: 0;
+}

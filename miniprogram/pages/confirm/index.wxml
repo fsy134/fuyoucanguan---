@@ -1,0 +1,51 @@
+<view class="page">
+  <!-- 顶部：标题 + 清空 -->
+  <view class="head-bar">
+    <view class="head-title">已点菜品</view>
+    <view class="head-clear" wx:if="{{cartList.length}}" bindtap="onClear">清空</view>
+  </view>
+
+  <!-- 购物车清单 -->
+  <scroll-view class="cart-list" scroll-y>
+    <view class="cart-row" wx:for="{{cartList}}" wx:key="id">
+      <image wx:if="{{item.image}}" class="row-img" src="{{item.image}}" mode="aspectFill" />
+      <view wx:else class="row-img row-img-empty">🍽</view>
+      <view class="row-info">
+        <view class="row-name">{{item.name}}</view>
+        <view class="row-flavor" wx:if="{{item.dishFlavor}}">口味：{{item.dishFlavor}}</view>
+        <view class="row-price">¥{{item.priceText}}</view>
+      </view>
+      <view class="row-stepper">
+        <view class="step-btn" data-index="{{index}}" bindtap="onMinus">－</view>
+        <view class="step-num">{{item.number}}</view>
+        <view class="step-btn" data-index="{{index}}" bindtap="onPlus">＋</view>
+      </view>
+    </view>
+
+    <!-- 空购物车 -->
+    <view class="cart-empty" wx:if="{{!cartList.length}}">
+      <view class="empty-icon">🛒</view>
+      <view>购物车空空的，去点几个菜吧</view>
+      <button class="btn-primary empty-btn" bindtap="onBack">去点餐</button>
+    </view>
+
+    <!-- 备注 -->
+    <view class="remark-box" wx:if="{{cartList.length}}">
+      <view class="remark-title">备注</view>
+      <textarea class="remark-input" placeholder="口味忌口等特殊要求，可告诉商家（选填）"
+                value="{{remark}}" bindinput="onRemarkInput" maxlength="100" />
+    </view>
+  </scroll-view>
+
+  <!-- 底部结算栏 -->
+  <view class="footer" wx:if="{{cartList.length}}">
+    <view class="footer-sum">
+      <view class="sum-info">{{tableNum}}号桌<text wx:if="{{peopleCount}}"> · {{peopleCount}}位</text></view>
+      <view class="sum-total">合计 <text class="total-amount">¥{{totalText}}</text></view>
+    </view>
+    <view class="footer-btns">
+      <button class="btn-back" bindtap="onBack">继续点餐</button>
+      <button class="btn-submit" bindtap="onSubmit">下单</button>
+    </view>
+  </view>
+</view>

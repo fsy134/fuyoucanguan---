@@ -1,0 +1,93 @@
+<view class="page">
+  <!-- 整页一起滚动：背景图+商家卡片+桌号条+所有菜品连排，向上滑时头部会跟着滚走 -->
+  <scroll-view class="dish-main" scroll-y
+               scroll-into-view="{{scrollIntoId}}" bindscroll="onMenuScroll">
+    <!-- 顶部：背景图 + 悬浮店铺卡片 -->
+    <view class="shop-header">
+      <image class="shop-bg" src="{{shopBg}}" mode="aspectFill" />
+      <view class="shop-mask"></view>
+      <view class="shop-card anim-float">
+        <image class="shop-avatar" src="{{shopLogo}}" mode="aspectFill" />
+        <view class="shop-info">
+          <view class="shop-name">{{shopName}}</view>
+          <view class="shop-notice">{{shopNotice}}</view>
+          <view class="shop-hours">营业时间 {{businessHours}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 桌号人数条 -->
+    <view class="table-banner">
+      <view>
+        <text>{{tableNum}}号桌</text>
+        <text wx:if="{{peopleCount}}"> · {{peopleCount}}位</text>
+      </view>
+      <text class="history-link" bindtap="goHistory">历史订单 ›</text>
+    </view>
+
+    <!-- 菜品列表（左边让出分类导航的位置） -->
+    <view class="menu-content">
+      <view class="sec" wx:for="{{sections}}" wx:for-item="sec" wx:for-index="sidx"
+            wx:key="catId" id="sec-{{sidx}}">
+        <!-- 分类小标题 -->
+        <view class="sec-header">{{sec.catName}}</view>
+        <!-- 该分类下的菜品/套餐 -->
+        <view class="dish-item" wx:for="{{sec.items}}" wx:for-item="item" wx:key="id">
+          <image wx:if="{{item.image}}" class="dish-img" src="{{item.image}}" mode="aspectFill" />
+          <view wx:else class="dish-img dish-img-empty">🍽</view>
+          <view class="dish-info">
+            <view class="dish-name">{{item.name}}</view>
+            <view class="dish-desc" wx:if="{{item.description}}">{{item.description}}</view>
+            <view class="dish-bottom">
+              <view class="dish-price">¥{{item.priceText}}</view>
+              <view class="add-btn" data-sec="{{sidx}}" data-idx="{{index}}" catchtap="onAddTap">＋</view>
+            </view>
+          </view>
+        </view>
+        <!-- 空分类提示 -->
+        <view class="sec-empty" wx:if="{{!sec.items.length}}">该分类暂无商品</view>
+      </view>
+      <view class="dish-empty" wx:if="{{loadingMenu}}">菜单加载中…</view>
+      <view class="dish-empty" wx:elif="{{menuEmpty}}">菜单暂未上架，请稍后再来</view>
+      <!-- 底部留白：别让最后一道菜被购物车球挡住 -->
+      <view class="bottom-space"></view>
+    </view>
+  </scroll-view>
+
+  <!-- 左侧分类导航：悬浮固定在左边，不随菜品滚动 -->
+  <scroll-view class="category-side" scroll-y style="top:{{sideTop}}px">
+    <view class="cat-item {{activeIndex === index ? 'active' : ''}} {{sec.featured ? 'featured' : ''}}"
+          wx:for="{{sections}}" wx:for-item="sec" wx:key="catId"
+          data-index="{{index}}" bindtap="switchCategory">
+      <text class="cat-tag" wx:if="{{sec.featured}}">荐</text>{{sec.catName}}
+    </view>
+    <view class="cat-empty" wx:if="{{!sections.length && !loadingMenu}}">暂无分类</view>
+  </scroll-view>
+
+  <!-- 加购弹窗 -->
+  <add-popup show="{{popupShow}}"
+             title="{{popupTitle}}"
+             price="{{popupPrice}}"
+             price-text="{{popupPriceText}}"
+             flavors="{{popupFlavors}}"
+             detail-items="{{popupDetailItems}}"
+             multi-names="{{multiFlavorNames}}"
+             bind:close="onPopupClose"
+             bind:confirm="onPopupConfirm" />
+
+  <!-- 购物车球 -->
+  <cart-ball count="{{cartCount}}" amount-text="{{cartAmountText}}" bind:tap="onCartTap" />
+
+  <!-- 人数弹窗 -->
+  <view class="modal-mask" wx:if="{{showPeopleModal}}">
+    <view class="modal-box">
+      <view class="modal-title">请问几位用餐？</view>
+      <view class="people-grid">
+        <view class="people-item" wx:for="{{peopleOptions}}" wx:key="*this"
+              data-num="{{item}}" bindtap="choosePeople">
+          <view class="people-item-inner">{{item}}位</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

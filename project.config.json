@@ -1,0 +1,62 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "compileHotReLoad": true,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
+  },
+  "appid": "wx888098f8a35aaab4",
+  "projectname": "fuyoucanguan-diancan",
+  "libVersion": "3.17.1",
+  "compileType": "miniprogram",
+  "srcMiniprogramRoot": "miniprogram/",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "模拟3号桌(编译模式)",
+          "pathName": "pages/menu/index",
+          "query": "tableNum=3"
+        },
+        {
+          "name": "模拟扫码进3号桌",
+          "pathName": "pages/menu/index",
+          "query": "scene=3"
+        }
+      ]
+    }
+  },
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "simulatorPluginLibVersion": {}
+}

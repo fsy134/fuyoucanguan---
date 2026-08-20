@@ -1,0 +1,5 @@
+<view class="cart-ball {{count>0 ? '' : 'ball-empty'}}" bindtap="onTap">
+  <view class="ball-icon">🛒</view>
+  <view class="ball-amount" wx:if="{{count>0}}">¥{{amountText}}</view>
+  <view class="ball-badge" wx:if="{{count>0}}">{{count>99 ? '99+' : count}}</view>
+</view>
